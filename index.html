@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4efe5">
+  <meta name="description" content="الموقع التعريفي الشخصي — مطور ومصمم يصنع تجارب رقمية مميزة.">
+  <title>حسن السبلاني | مطور ومصمم</title>
+  <style>
+    :root {
+      --paper: #f4efe5;
+      --paper-2: #ebe4d5;
+      --ink: #17201b;
+      --muted: #697267;
+      --green: #234d3a;
+      --lime: #c9d98c;
+      --orange: #ee7953;
+      --line: rgba(23, 32, 27, .13);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .shell {
+      width: min(1180px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    header {
+      height: 92px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--lime);
+      font-family: Georgia, serif;
+      font-size: 18px;
+      direction: ltr;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      position: relative;
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--ink);
+    }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      left: 0;
+      bottom: -12px;
+      height: 3px;
+      border-radius: 99px;
+      background: var(--orange);
+    }
+
+    .contact-pill {
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 0 18px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s ease;
+    }
+
+    .contact-pill:hover {
+      background: var(--ink);
+      color: var(--paper);
+      transform: translateY(-2px);
+    }
+
+    .menu-button {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    main { position: relative; }
+
+    .hero {
+      min-height: calc(100svh - 92px);
+      min-height: 690px;
+      display: grid;
+      grid-template-columns: 52% 48%;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 4;
+      padding: 46px 0 56px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 0 5px rgba(201, 217, 140, .35);
+    }
+
+    h1 {
+      max-width: 650px;
+      margin: 0;
+      font-size: clamp(58px, 7.3vw, 94px);
+      line-height: .99;
+      letter-spacing: -5px;
+      font-weight: 900;
+    }
+
+    h1 span {
+      color: var(--orange);
+    }
+
+    .lede {
+      max-width: 530px;
+      margin: 28px 0 34px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 2;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .primary,
+    .secondary {
+      height: 56px;
+      border-radius: 999px;
+      border: 0;
+      padding: 0 24px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .primary {
+      min-width: 176px;
+      background: var(--ink);
+      color: white;
+      box-shadow: 0 12px 28px rgba(23, 32, 27, .14);
+    }
+
+    .secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .primary:hover,
+    .secondary:hover {
+      transform: translateY(-3px);
+    }
+
+    .portrait-area {
+      height: 610px;
+      position: relative;
+      direction: ltr;
+    }
+
+    .portrait-wrap {
+      position: absolute;
+      width: 410px;
+      height: 520px;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      border-radius: 210px 210px 24px 24px;
+      overflow: hidden;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, .3), transparent 30%),
+        var(--green);
+      box-shadow: 0 30px 60px rgba(35, 77, 58, .16);
+    }
+
+    .portrait-wrap::before {
+      content: "";
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      left: 50%;
+      top: 64px;
+      transform: translateX(-50%);
+      border: 1px solid rgba(244, 239, 229, .25);
+      border-radius: 50%;
+    }
+
+    .monogram {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      color: rgba(244, 239, 229, .96);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 190px;
+      line-height: 1;
+      direction: rtl;
+    }
+
+    .portrait-grid {
+      position: absolute;
+      inset: 0;
+      opacity: .24;
+      background-image:
+        linear-gradient(rgba(244, 239, 229, .3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244, 239, 229, .3) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, transparent 2%, black 68%, transparent);
+    }
+
+    .shape {
+      position: absolute;
+      z-index: 5;
+      direction: rtl;
+    }
+
+    .shape.orange {
+      width: 128px;
+      height: 128px;
+      right: -18px;
+      top: 74px;
+      border-radius: 50%;
+      background: var(--orange);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.7;
+      text-align: center;
+      transform: rotate(8deg);
+    }
+
+    .shape.orange::after {
+      content: "↗";
+      position: absolute;
+      right: 26px;
+      bottom: 18px;
+      font-size: 24px;
+      font-family: Arial, sans-serif;
+    }
+
+    .shape.lime {
+      width: 104px;
+      height: 104px;
+      left: 20px;
+      bottom: 56px;
+      border-radius: 24px;
+      background: var(--lime);
+      transform: rotate(-8deg);
+      display: grid;
+      place-items: center;
+      font-family: Georgia, serif;
+      font-size: 44px;
+    }
+
+    .status-card {
+      position: absolute;
+      z-index: 6;
+      right: 12px;
+      bottom: 28px;
+      direction: rtl;
+      min-width: 210px;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(244, 239, 229, .88);
+      backdrop-filter: blur(12px);
+    }
+
+    .status-card small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .status-card strong {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .status-card strong::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #58a66e;
+      box-shadow: 0 0 0 4px rgba(88, 166, 110, .12);
+    }
+
+    .skills-strip {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 11px;
+      direction: ltr;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+    }
+
+    .skills-strip span::before {
+      content: "+";
+      color: var(--orange);
+      margin-right: 8px;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 58% 42%;
+      }
+
+      h1 { font-size: clamp(54px, 8vw, 74px); }
+      .portrait-wrap { width: 340px; height: 480px; }
+      .shape.orange { right: -24px; }
+    }
+
+    @media (max-width: 720px) {
+      .shell { width: min(100% - 32px, 1180px); }
+      header { height: 76px; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        z-index: 20;
+        top: 76px;
+        right: 16px;
+        left: 16px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(244, 239, 229, .96);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-links a.active::after { display: none; }
+      .contact-pill { display: none; }
+      .menu-button { display: grid; place-items: center; }
+
+      .hero {
+        min-height: calc(100svh - 76px);
+        display: block;
+      }
+
+      .hero-copy {
+        padding: 54px 0 32px;
+      }
+
+      h1 {
+        max-width: 520px;
+        font-size: clamp(48px, 15vw, 68px);
+        letter-spacing: -3px;
+      }
+
+      .lede {
+        max-width: 500px;
+        margin: 22px 0 26px;
+        font-size: 15px;
+        line-height: 1.9;
+      }
+
+      .portrait-area {
+        height: 340px;
+        margin-top: -14px;
+      }
+
+      .portrait-wrap {
+        width: 250px;
+        height: 330px;
+        border-radius: 150px 150px 18px 18px;
+      }
+
+      .portrait-wrap::before {
+        width: 210px;
+        height: 210px;
+        top: 50px;
+      }
+
+      .monogram { font-size: 118px; }
+
+      .shape.orange {
+        width: 94px;
+        height: 94px;
+        right: calc(50% - 172px);
+        top: 28px;
+      }
+
+      .shape.lime {
+        width: 76px;
+        height: 76px;
+        left: calc(50% - 168px);
+        bottom: 22px;
+        font-size: 32px;
+      }
+
+      .status-card,
+      .skills-strip { display: none; }
+    }
+
+    @media (max-height: 700px) and (min-width: 721px) {
+      .hero { min-height: 610px; }
+      .portrait-area { height: 560px; }
+      .portrait-wrap { height: 470px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="shell" aria-label="التنقل الرئيسي">
+      <a class="brand" href="#">
+        <span class="brand-mark">ح</span>
+        <span>حسن السبلاني</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a class="active" href="#">الرئيسية</a>
+        <a href="#work">أعمالي</a>
+        <a href="#about">نبذة عني</a>
+      </div>
+
+      <a class="contact-pill" href="mailto:hello@alfaqih.me">تواصل معي <span dir="ltr">↗</span></a>
+      <button class="menu-button" id="menuButton" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="hero" id="about">
+      <div class="hero-copy">
+        <div class="eyebrow">متاح لمشاريع جديدة</div>
+        <h1>أصنع تجارب <span>رقمية.</span></h1>
+        <p class="lede">
+          مطوّر ومصمم يهتم ببناء منتجات واضحة، هادئة، وسهلة الاستخدام. أحوّل الأفكار المعقدة إلى تصميمات بسيطة وشخصيات مميزة.
+        </p>
+        <div class="actions">
+          <a class="primary" href="#work" style="display:inline-grid;place-items:center">شاهد أعمالي</a>
+          <a class="secondary" href="#work" style="display:inline-grid;place-items:center">نبذة مختصرة</a>
+        </div>
+      </div>
+
+      <div class="portrait-area" id="work" aria-label="رسم شخصي تجريدي">
+        <div class="portrait-wrap">
+          <div class="portrait-grid"></div>
+          <div class="monogram">ح س</div>
+        </div>
+
+        <div class="shape orange">تصميم<br>وتطوير</div>
+        <div class="shape lime">ح</div>
+
+        <div class="status-card">
+          <small>التخصص الحالي</small>
+          <strong>تطوير واجهات الويب</strong>
+        </div>
+      </div>
+
+      <div class="skills-strip" aria-label="المهارات">
+        <span>Design</span>
+        <span>Development</span>
+        <span>Digital Products</span>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+
+    menuButton.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(open));
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
+</body>
+</html>
